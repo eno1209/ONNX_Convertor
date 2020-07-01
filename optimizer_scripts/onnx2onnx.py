@@ -55,7 +55,7 @@ else:
     logging.debug('input file successfully loaded')
 # temp.weight_broadcast(m.graph)
 m = combo.preprocess(m)
-logging.debug('model was preprocessed - see combo.preprocess for process details')
+logging.debug('model was preprocessed')
 # temp.fuse_bias_in_consecutive_1x1_conv(m.graph)
 
 # Add BN on skip branch
@@ -65,7 +65,7 @@ if args.bn_on_skip:
 
 # My optimization
 m = combo.common_optimization(m)
-logging.debug('model was optimized - see combo.common_optimization for optimization details')
+logging.debug('model was optimized')
 # Special options
 if args.bgr:
     special.change_input_from_bgr_to_rgb(m)
@@ -78,4 +78,4 @@ if args.norm:
 m = combo.postprocess(m)
 logging.debug('model was postprocessed')
 onnx.save(m, outfile)
-logging.info('model is saved to output file', outfile)
+logging.info('model is saved to output file ' + outfile)
